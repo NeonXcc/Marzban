@@ -170,7 +170,52 @@ wget -O /opt/marzban/nginx.conf "https://raw.githubusercontent.com/GawrAme/MarLi
 wget -O /opt/marzban/default.conf "https://raw.githubusercontent.com/GawrAme/MarLing/main/vps.conf"
 wget -O /opt/marzban/xray.conf "https://raw.githubusercontent.com/GawrAme/MarLing/main/xray.conf"
 mkdir -p /var/www/html
-echo "<pre>Setup by AutoScript LingVPN</pre>" > /var/www/html/index.html
+echo "<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Bug Wildcard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            background: url('https://images.wallpaperscraft.com/image/single/girl_demon_horns_1085787_1080x1920.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+        .text {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 3rem;
+            font-family: 'Russo One', sans-serif;
+        }
+        @media (max-width: 768px) {
+            .text {
+                font-size: 2rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="text">Support Bug Wildcard</div>
+</body>
+</html>
+" > /var/www/html/index.html
 
 #install socat
 apt install iptables -y
