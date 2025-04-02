@@ -170,7 +170,126 @@ wget -O /opt/marzban/nginx.conf "https://raw.githubusercontent.com/GawrAme/MarLi
 wget -O /opt/marzban/default.conf "https://raw.githubusercontent.com/GawrAme/MarLing/main/vps.conf"
 wget -O /opt/marzban/xray.conf "https://raw.githubusercontent.com/GawrAme/MarLing/main/xray.conf"
 mkdir -p /var/www/html
-echo "<pre>404 Not Found</pre>" > /var/www/html/index.html
+echo "<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 6rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin: 10px 0 30px;
+            opacity: 0.8;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <h1>404</h1>
+    <p>Page not found</p>
+    <p>Oops...The link you clicked may be broken or removed.</p>
+    <canvas id="particles"></canvas>
+    <script>
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray = [];
+        const mouse = {
+            x: null,
+            y: null,
+            radius: 100
+        };
+
+        class Particle {
+            constructor(x, y, size, speedY) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.speedY = speedY;
+                this.value = Math.random() > 0.5 ? '0' : '1';
+            }
+            update() {
+                this.y += this.speedY;
+                if (this.y > canvas.height) {
+                    this.y = 0;
+                    this.x = Math.random() * canvas.width;
+                }
+                
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius) {
+                    this.x += (Math.random() - 0.5) * 10;
+                    this.y += (Math.random() - 0.5) * 10;
+                }
+            }
+            draw() {
+                ctx.fillStyle = "#00FF00";
+                ctx.font = `${this.size * 2}px Arial`;
+                ctx.fillText(this.value, this.x, this.y);
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            for (let i = 0; i < 500; i++) { 
+                let size = Math.random() * 5 + 1;
+                let x = Math.random() * canvas.width;
+                let y = Math.random() * canvas.height;
+                let speedY = Math.random() * 3 + 1;
+                particlesArray.push(new Particle(x, y, size, speedY));
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener("mousemove", function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
+" > /var/www/html/index.html
 
 #install socat
 apt install iptables -y
