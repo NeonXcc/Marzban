@@ -123,10 +123,10 @@ timedatectl set-timezone Asia/Jakarta;
 sudo bash -c "$(curl -sL https://github.com/GawrAme/Marzban-scripts/raw/master/marzban.sh)" @ install
 
 #Install Subs
-wget -N -P /var/lib/marzban/templates/subscription/  https://raw.githubusercontent.com/NeonXcc/Marzban/refs/heads/mainmain/index.html
+wget -N -P /var/lib/marzban/templates/subscription/  https://raw.githubusercontent.com/NeonXcc/Marzban/refs/heads/main/index.html
 
 #install env
-wget -O /opt/marzban/.env "https://raw.githubusercontent.com/NeonXcc/Marzban/refs/heads/mainmain/env"
+wget -O /opt/marzban/.env "https://raw.githubusercontent.com/GawrAme/MarLing/main/env"
 
 #install Assets folder
 mkdir -p /var/lib/marzban/assets
@@ -134,14 +134,14 @@ cd
 
 #profile
 echo -e 'profile' >> /root/.profile
-wget -O /usr/bin/profile "https://raw.githubusercontent.com/NeonXcc/Marzban/refs/heads/mainmain/profile";
+wget -O /usr/bin/profile "https://raw.githubusercontent.com/GawrAme/MarLing/main/profile";
 chmod +x /usr/bin/profile
 apt install neofetch -y
-wget -O /usr/bin/cekservice "https://raw.githubusercontent.com/NeonXcc/Marzban/refs/heads/mainmain/cekservice.sh"
+wget -O /usr/bin/cekservice "https://raw.githubusercontent.com/GawrAme/MarLing/main/cekservice.sh"
 chmod +x /usr/bin/cekservice
 
 #install compose
-wget -O /opt/marzban/docker-compose.yml "https://raw.githubusercontent.com/NeonXcc/Marzban/refs/heads/mainmain/docker-compose.yml"
+wget -O /opt/marzban/docker-compose.yml "https://raw.githubusercontent.com/GawrAme/MarLing/main/docker-compose.yml"
 
 #Install VNSTAT
 apt -y install vnstat
@@ -166,56 +166,11 @@ sudo apt-get install speedtest -y
 mkdir -p /var/log/nginx
 touch /var/log/nginx/access.log
 touch /var/log/nginx/error.log
-wget -O /opt/marzban/nginx.conf "main/nginx.conf"
-wget -O /opt/marzban/default.conf "main/vps.conf"
-wget -O /opt/marzban/xray.conf "main/xray.conf"
+wget -O /opt/marzban/nginx.conf "https://raw.githubusercontent.com/GawrAme/MarLing/main/nginx.conf"
+wget -O /opt/marzban/default.conf "https://raw.githubusercontent.com/GawrAme/MarLing/main/vps.conf"
+wget -O /opt/marzban/xray.conf "https://raw.githubusercontent.com/GawrAme/MarLing/main/xray.conf"
 mkdir -p /var/www/html
-echo "<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Bug Wildcard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-        html, body {
-            width: 100%;
-            height: 100%;
-        }
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            background: url('https://images.wallpaperscraft.com/image/single/girl_demon_horns_1085787_1080x1920.jpg') no-repeat center center/cover;
-            position: relative;
-        }
-        .text {
-            width: 100%;
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            font-size: 3rem;
-            font-family: 'Russo One', sans-serif;
-        }
-        @media (max-width: 768px) {
-            .text {
-                font-size: 2rem;
-                padding: 15px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="text">Support Bug Wildcard</div>
-</body>
-</html>
-" > /var/www/html/index.html
+echo "<pre>404 Not Found</pre>" > /var/www/html/index.html
 
 #install socat
 apt install iptables -y
@@ -226,7 +181,7 @@ apt install socat cron bash-completion -y
 curl https://get.acme.sh | sh -s email=$email
 /root/.acme.sh/acme.sh --server letsencrypt --register-account -m $email --issue -d $domain --standalone -k ec-256 --debug
 ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /var/lib/marzban/xray.crt --keypath /var/lib/marzban/xray.key --ecc
-wget -O /var/lib/marzban/xray_config.json "https://raw.githubusercontent.com/NeonXcc/Marzban/refs/heads/mainmain/xray_config.json"
+wget -O /var/lib/marzban/xray_config.json "https://raw.githubusercontent.com/GawrAme/MarLing/main/xray_config.json"
 
 #install firewall
 apt install ufw -y
