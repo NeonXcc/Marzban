@@ -1,0 +1,29 @@
+root vps
+
+``#!/bin/bash
+# Mod By SL
+
+# Update konfigurasi SSH
+wget -qO /etc/ssh/sshd_config https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/sshd_config
+
+# Restart SSH agar config baru aktif
+systemctl restart sshd
+
+# Minta password baru
+clear
+echo -e "Masukkan Password Baru untuk Root:"
+read -s -e pwe
+
+# Ganti password root
+echo "root:$pwe" | chpasswd
+
+# Tampilkan info VPS
+clear
+printf "Mohon Simpan Informasi Akun VPS Ini
+============================================
+Akun Root (Akun Utama)
+IP Address = $(curl -s http://ipinfo.io/ip)
+Username   = root
+Password   = $pwe
+============================================\n"
+``
