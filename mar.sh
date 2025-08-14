@@ -123,7 +123,7 @@ timedatectl set-timezone Asia/Jakarta;
 sudo bash -c "$(curl -sL https://github.com/GawrAme/Marzban-scripts/raw/master/marzban.sh)" @ install
 
 #Install Subs
-wget -N -P /var/lib/marzban/templates/subscription/  https://raw.githubusercontent.com/NeonXcc/Marzban/refs/heads/main/index.html
+wget -N -P /var/lib/marzban/templates/subscription/  https://raw.githubusercontent.com/MuhammadAshouri/marzban-templates/master/template-01/index.html
 
 #install env
 wget -O /opt/marzban/.env "https://raw.githubusercontent.com/GawrAme/MarLing/main/env"
@@ -170,7 +170,7 @@ wget -O /opt/marzban/nginx.conf "https://raw.githubusercontent.com/GawrAme/MarLi
 wget -O /opt/marzban/default.conf "https://raw.githubusercontent.com/GawrAme/MarLing/main/vps.conf"
 wget -O /opt/marzban/xray.conf "https://raw.githubusercontent.com/GawrAme/MarLing/main/xray.conf"
 mkdir -p /var/www/html
-echo "<pre>404 Not Found</pre>" > /var/www/html/index.html
+echo "<pre>Setup by AutoScript LingVPN</pre>" > /var/www/html/index.html
 
 #install socat
 apt install iptables -y
